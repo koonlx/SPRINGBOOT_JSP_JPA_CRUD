@@ -1,0 +1,45 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'war'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // jpa
+	implementation 'org.springframework.boot:spring-boot-starter-web' // web
+	// start jsp
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'jakarta.servlet:jakarta.servlet-api'
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	// end jsp
+	implementation 'mysql:mysql-connector-java:8.0.23' // mysql driver connector
+	compileOnly 'org.projectlombok:lombok' // lombok
+	developmentOnly 'org.springframework.boot:spring-boot-devtools' // devtools
+	annotationProcessor 'org.projectlombok:lombok' // lombok
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // test
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
